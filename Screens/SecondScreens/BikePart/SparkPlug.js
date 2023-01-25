@@ -9,7 +9,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-const Allignments = ({ navigation }) => {
+const SparkPlug = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -32,10 +32,10 @@ const Allignments = ({ navigation }) => {
         />
       </View>
       <View style={styles.b_p}>
-        <Image source={require("../../../Image/oil_1.png")} />
+        <Image source={require("../../../Image/bikeplug_1.png")} />
       </View>
       <View style={styles.b_p}>
-        <Text style={{ marginTop: 15 }}>Allignment</Text>
+        <Text style={{ marginTop: 15 }}>AirFilter</Text>
 
         <Text
           style={{
@@ -47,7 +47,7 @@ const Allignments = ({ navigation }) => {
             marginTop: 15,
           }}
         >
-          RS.300
+          RS.700
         </Text>
       </View>
       <TouchableOpacity
@@ -77,7 +77,7 @@ const Allignments = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-export default Allignments;
+export default SparkPlug;
 
 const styles = StyleSheet.create({
   container: {

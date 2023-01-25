@@ -28,6 +28,10 @@ import OilFilter from "./Screens/SecondScreens/CarPart/Oil_Filter";
 import Tyre from "./Screens/SecondScreens/CarPart/Tyre";
 import BookingForm from "./Screens/SecondScreens/CarPart/BookingForm";
 import ConfirmOrder from "./Screens/SecondScreens/CarPart/ConfirmOrder";
+import Tyre_1 from "./Screens/SecondScreens/BikePart/Tyre_1";
+import Sprocket from "./Screens/SecondScreens/BikePart/Sprcocket";
+import SparkPlug from "./Screens/SecondScreens/BikePart/SparkPlug";
+import Caorborator from "./Screens/SecondScreens/BikePart/Carborator";
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -144,6 +148,26 @@ function App() {
         <Stack.Screen
           name="ConfirmOrder"
           component={ConfirmOrder}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Tyre_1"
+          component={Tyre_1}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Sprocket"
+          component={Sprocket}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SparkPlug"
+          component={SparkPlug}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Carborator"
+          component={Caorborator}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

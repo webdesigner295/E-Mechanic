@@ -1,17 +1,16 @@
-import { View,Text,StyleSheet,SafeAreaView } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Emechanic = ()=>{
-    return(
-        <SafeAreaView>
-            <View>
-                <Text>
-                    E-Mechanic
-                </Text>
-            </View>
-        </SafeAreaView>
-    )
-}
-export default Emechanic
+const Emechanic = () => {
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View>
+        <Text>E-Mechanic</Text>
+      </View>
+    </SafeAreaView>
+  );
+};
+export default Emechanic;
 
 // import * as React from 'react';
 // import { Text, View, SafeAreaView } from 'react-native';
