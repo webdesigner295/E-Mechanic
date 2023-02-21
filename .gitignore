@@ -1,4 +1,9 @@
 node_modules
 yarn-error.log
 !.git
+<<<<<<< HEAD
 .expo
+=======
+.expo
+code.zip
+>>>>>>> 98a7ca042e9b99e410ef2ea6131dbecd4dcb63b9

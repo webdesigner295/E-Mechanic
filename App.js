@@ -46,6 +46,11 @@ function App() {
 
       <Stack.Navigator>
         <Stack.Screen
+          name="MapScreen"
+          component={MapScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="Splash"
           component={SplashScreen}
           options={{ headerShown: false }}
