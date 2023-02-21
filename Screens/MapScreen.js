@@ -7,7 +7,12 @@ import HomeSearch from './HomeSearch';
 import DestinationSearch from "./DestinationSearch";
 
 const MapScreen = () => {
-  const [originPlace, setOriginPlace] = useState(null);  
+  const [originPlace, setOriginPlace] = useState({
+    latitude: 28.450627,
+    longitude: -16.263045,
+    latitudeDelta: 0.0222,
+    longitudeDelta: 0.0121,
+  });
   
 
   return (

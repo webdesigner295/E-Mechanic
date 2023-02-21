@@ -9,12 +9,6 @@ const HomeMap = (props) => {
 
   const cars = [
     {
-      id: '0',
-      latitude: 28.450627,
-      longitude: -16.263045,
-      heading: 47,
-    },
-    {
       id: '1',
       latitude: 28.456312,
       longitude: -16.252929,
@@ -31,31 +25,51 @@ const HomeMap = (props) => {
     },
   ];
 
+  const markers = cars.map((car) => (
+    <Marker
+      key={car.id}
+      coordinate={{latitude: car.latitude, longitude: car.longitude}}
+      
+    >
+      <Text>Shop# {car.id}</Text>
+      <Image
+        style={{
+          width: 30,
+          height: 30,
+          resizeMode: 'contain',
+        }}
+        source={require('../Image/Vector8.png')}
+      />
+    </Marker>
+  ));
+
+  markers.push(
+    <Marker
+      key={999}
+      coordinate={{latitude: props.originPlace.latitude, longitude: props.originPlace.longitude}}
+      
+    >
+      <Text>To</Text>
+      <Image
+        style={{
+          width: 30,
+          height: 30,
+          resizeMode: 'contain',
+        }}
+        source={require('../Image/Vector2.png')}
+      />
+    </Marker>
+
+  )
 
   return (
     <SafeAreaView>
       <MapView
         style={{width: '100%', height: '100%'}}
         provider={PROVIDER_GOOGLE}
-        showsUserLocation={true}
-        region={props.originPlace}>
-        {cars.map((car) => (
-          <Marker
-            key={car.id}
-            coordinate={{latitude: car.latitude, longitude: car.longitude}}
-            
-          >
-            <Text>Shop# {car.id}</Text>
-            <Image
-              style={{
-                width: 30,
-                height: 30,
-                resizeMode: 'contain',
-              }}
-              source={require('../Image/Vector8.png')}
-            />
-          </Marker>
-        ))}
+        region={props.originPlace}
+        >
+        {markers}
       </MapView>
     </SafeAreaView>
   );

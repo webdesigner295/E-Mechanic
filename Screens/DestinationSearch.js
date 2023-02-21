@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, TextInput, SafeAreaView, KeyboardAvoidingView} from 'react-native';
+import {View, TextInput, SafeAreaView, KeyboardAvoidingView, Button} from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native';
+import * as Location from 'expo-location';
 
 
 import { StyleSheet } from 'react-native';
@@ -32,15 +33,37 @@ const DestinationSearch = (props) => {
 
   useEffect(() => {
     checkNavigation();
-  }, [props.originPlace]);
+  }, [props.originPlace])
 
-  
+
+  const getLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+          return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Balanced,
+          enableHighAccuracy: true,
+          timeInterval: 5
+      });
+
+      const newPoint = {
+        longitude: location.coords.longitude,
+        latitude: location.coords.latitude,
+        latitudeDelta: 0.0222,
+        longitudeDelta: 0.0121,
+      };
+      props.setOriginPlace(newPoint);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behaviour='padding'>
+    <Button title='Current Location' onPress={getLocation}/>
 
+    <View>
         <GooglePlacesAutocomplete
-          placeholder="Where from?"
+          placeholder="Where to?"
           onPress={(data, details = null) => {
             const newPoint = {
               longitude: details.geometry.location.lng,
@@ -50,7 +73,6 @@ const DestinationSearch = (props) => {
             };
 
             props.setOriginPlace(newPoint);
-            console.log(newPoint);
           }}
           enablePoweredByContainer={false}
           suppressDefaultStyles
@@ -67,14 +89,12 @@ const DestinationSearch = (props) => {
           }}
           renderRow={(data) => <PlaceRow data={data} />}
           renderDescription={(data) => data.description || data.vicinity}
-          predefinedPlaces={[homePlace]}
         />
 
 
         {/* Circle near Origin input */}
         <View style={styles.circle} />
-
-      </KeyboardAvoidingView>
+      </ View>
     </SafeAreaView>
   );
 };
