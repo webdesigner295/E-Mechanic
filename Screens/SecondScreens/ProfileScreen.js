@@ -1,4 +1,4 @@
-import { getAuth } from 'firebase/auth';
+import { getAuth, updateProfile } from 'firebase/auth';
 import {
   StyleSheet,
   Text,
@@ -7,36 +7,45 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import {MaterialIcons} from 'react-native-vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import React, { useState} from 'react';
-
-
+import React, { useEffect, useState} from 'react';
+import {ref, getStorage} from 'firebase/storage';
+import { async } from '@firebase/util';
+import { uploadImage } from '../../util';
 
 const ProfileScreen = () => {
-  const [image, setImage] = useState(null);
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   const changeImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [1, 1],
-      quality: 1,
     });
   
-    console.log(result);
-  
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+     uploadImage(result.assets[0].uri, 'user-pfp', user.uid).then((value) => {
+      updateProfile(user, {photoURL: value.url});
+      console.log('Updated PFP!');
+     })
+     .catch((reason) => {
+        console.error(reason);
+     });
+
     }
   }
 
-  const auth = getAuth();
-  const userName = auth.currentUser.displayName;
+  
 
   return (
     <View style={styles.container}>
         <View style={styles.header}></View>
-        {image && <Image style={styles.avatar} source={{uri: image}}/>}
+        {
+          user.photoURL ?  <Image source={{uri: user.photoURL}} style={styles.avatar}/> :
+          <MaterialIcons name='person' color='white' size={100} style={styles.avatar}/>
+        }
         <View style={styles.body}>
           <View style={styles.bodyContent}>
             <Text style={styles.name}>John Doe</Text>

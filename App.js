@@ -33,12 +33,17 @@ import Sprocket from "./Screens/SecondScreens/BikePart/Sprcocket";
 import SparkPlug from "./Screens/SecondScreens/BikePart/SparkPlug";
 import Caorborator from "./Screens/SecondScreens/BikePart/Carborator";
 import MapScreen from "./Screens/MapScreen";
-import DestinationSearch from "./Screens/DestinationSearch";
+
+import { initFirebase } from "./Backend/config";
+
 const Stack = createNativeStackNavigator();
 
 
 
 function App() {
+
+  initFirebase();
+
 
   return (
     <NavigationContainer>
@@ -46,12 +51,7 @@ function App() {
 
       <Stack.Navigator>
         <Stack.Screen
-          name="MapScreen"
-          component={MapScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Splash"
+          name="SplashScreen"
           component={SplashScreen}
           options={{ headerShown: false }}
         />

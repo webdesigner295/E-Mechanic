@@ -59,7 +59,7 @@ const DestinationSearch = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-    <Button title='Current Location' onPress={getLocation}/>
+    <Button color="#4BC500" title='Current Location' onPress={getLocation}/>
 
     <View>
         <GooglePlacesAutocomplete

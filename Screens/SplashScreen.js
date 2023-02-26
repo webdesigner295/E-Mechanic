@@ -10,27 +10,12 @@ import {
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { initFirebase } from "../Backend/config";
+import { app } from "../Backend/config";
+import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { useEffect } from "react";
 
 
 const SplashScreen = ({ navigation }) => {
-  let auth = null;
-  let user = null;
-
-  useEffect(() => {
-    initFirebase();
-
-    auth = getAuth();
-    user = auth.currentUser;
-
-    if (user) {
-      console.log("signed in: " + user.email);
-    } else {
-      console.log("No User Signed In!");
-    }
-  })
 
 
   return (
@@ -70,14 +55,11 @@ const SplashScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.buttonStyle} activeOpacity={0.5}>
           <Text
             onPress={() => {
-              navigation.navigate("MapScreen");
-              return;
+              const user = getAuth(app).currentUser;
 
-              if (user) {
-                navigation.navigate("Home");
-              } else {
-                navigation.navigate("RegisterScreen");
-              }
+              if (user) navigation.navigate('HomeScreen');
+              else navigation.navigate('LoginScreen');
+
             }}
             style={styles.buttonTextStyle}
           >

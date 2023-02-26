@@ -6,18 +6,47 @@ import {
   ScrollView,
   TextInput,
   Touchable,
+  Alert
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottamBar from "./BottamBar";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import Carousel from "react-native-snap-carousel";
 
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+import {MaterialIcons} from 'react-native-vector-icons';
 
 const HomeScreen = ({navigation}) => {
+  useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+
+        // Prompt the user before leaving the screen
+        Alert.alert(
+          'Log out?',
+          'You will be logged out of your account and have to log back in!',
+          [
+            { text: "Stay", style: 'cancel', onPress: () => {} },
+            {
+              text: 'Log Out',
+              style: 'destructive',
+              onPress: () => { 
+                signOut(getAuth());
+                console.log('Signed Out!');
+                navigation.dispatch(e.data.action);
+              }
+            },
+          ]
+        );
+      }), []
+  );
+
+
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -31,7 +60,10 @@ const HomeScreen = ({navigation}) => {
           onPress={() => navigation.navigate("ProfileScreen")}
           style={{ width: 100, height: 100, position: "absolute" }}
         >
-          <Image source={require("../Image/pfp.jpg")} style={styles.avatar} />
+          {
+          user.photoURL ? <Image source={{uri: user.photoURL}} style={styles.avatar} /> :
+          <MaterialIcons name='person' color='#4BC500' size={100} style={styles.avatar}/>
+          }
         </Pressable>
 
         <Image

@@ -1,9 +1,11 @@
 import {initializeApp} from 'firebase/app';
+import {getStorage} from 'firebase/storage';
 
 let app = null;
+let storage = null;
 
 const initFirebase = () => {
-  const firebaseConfig = {
+  const firebaseOptions = {
     apiKey: "AIzaSyBrKjga5RGPlpnpzPu8Nwzlv58qeRvmVy4",
     authDomain: "test-app-b7854.firebaseapp.com",
     projectId: "test-app-b7854",
@@ -13,11 +15,9 @@ const initFirebase = () => {
     measurementId: "G-HTKQXYJWFH"
   };
 
-  app = initializeApp(firebaseConfig);
-  console.log('initialized!');
-
+  app = initializeApp(firebaseOptions);
+  storage = getStorage(app);
 }
 
 
-export {initFirebase};
-export {app};
+export {initFirebase, app, storage};
