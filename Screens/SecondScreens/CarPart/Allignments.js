@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { addToCart } from "../../../util";
 
 const Allignments = ({ navigation }) => {
   return (
@@ -68,7 +69,7 @@ const Allignments = ({ navigation }) => {
         activeOpacity={0.5}
       >
         <Text
-          onPress={() => navigation.navigate("Booking")}
+          onPress={() => addToCart('Allignments')}
           style={styles.buttonTextStyle_1}
         >
           Add to cart

@@ -14,6 +14,7 @@ import {ref, getStorage} from 'firebase/storage';
 import { async } from '@firebase/util';
 import { uploadImage } from '../../util';
 
+
 const ProfileScreen = () => {
   const auth = getAuth();
   const user = auth.currentUser;

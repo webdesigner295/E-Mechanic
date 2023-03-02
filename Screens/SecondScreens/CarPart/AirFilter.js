@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import {addToCart} from './../../../util';
+
 
 const Airfilter = ({ navigation }) => {
   return (
@@ -68,7 +70,7 @@ const Airfilter = ({ navigation }) => {
         activeOpacity={0.5}
       >
         <Text
-          onPress={() => navigation.navigate("Booking")}
+          onPress={() => addToCart('Air Filter')}
           style={styles.buttonTextStyle_1}
         >
           Add to cart

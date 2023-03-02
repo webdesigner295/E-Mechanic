@@ -18,8 +18,13 @@ import { getAuth, signOut } from "firebase/auth";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import {MaterialIcons} from 'react-native-vector-icons';
+import { FloatingAction } from "react-native-floating-action";
+import { useSelector } from "react-redux";
+import { CartIcon } from "../Components/CartIcon";
 
 const HomeScreen = ({navigation}) => {
+  const itemCount = useSelector(state => state.count);
+
   useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
@@ -61,8 +66,8 @@ const HomeScreen = ({navigation}) => {
           style={{ width: 100, height: 100, position: "absolute" }}
         >
           {
-          user.photoURL ? <Image source={{uri: user.photoURL}} style={styles.avatar} /> :
-          <MaterialIcons name='person' color='#4BC500' size={100} style={styles.avatar}/>
+            user.photoURL ? <Image source={{uri: user.photoURL}} style={styles.avatar} /> :
+            <MaterialIcons name='person' color='#4BC500' size={100} style={styles.avatar}/>
           }
         </Pressable>
 
@@ -167,7 +172,7 @@ const HomeScreen = ({navigation}) => {
           <View
             style={{ flexDirection: "row", justifyContent: "space-evenly" }}
           >
-            <Text onPress={() => navigation.navigate("Antifreez")}>
+            <Text onPress={() => navigation.navigate("AntiFreeze")}>
               Antifreeze
             </Text>
             <Text onPress={() => navigation.navigate("Tyre")}>Tyres</Text>
@@ -203,6 +208,7 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
       </View>
+      <CartIcon navigation={navigation}/>
 
       {/* </ScrollView> */}
       {/* <BottamBar/> */}

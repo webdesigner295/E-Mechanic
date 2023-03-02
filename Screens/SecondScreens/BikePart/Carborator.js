@@ -8,6 +8,11 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { store } from "../../../redux/store";
+
+const addToCart = () => {
+  
+} 
 
 const Caorborator = ({ navigation }) => {
   return (
@@ -68,7 +73,7 @@ const Caorborator = ({ navigation }) => {
         activeOpacity={0.5}
       >
         <Text
-          onPress={() => navigation.navigate("Booking")}
+          onPress={addToCart}
           style={styles.buttonTextStyle_1}
         >
           Add to cart

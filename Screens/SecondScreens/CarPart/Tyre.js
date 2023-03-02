@@ -9,6 +9,9 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
+
+import { addToCart } from "../../../util";
+
 const Tyre = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
@@ -68,7 +71,7 @@ const Tyre = ({ navigation }) => {
         activeOpacity={0.5}
       >
         <Text
-          onPress={() => navigation.navigate("Booking")}
+          onPress={() => addToCart('Tyre')}
           style={styles.buttonTextStyle_1}
         >
           Add to cart

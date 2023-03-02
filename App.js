@@ -33,162 +33,173 @@ import Sprocket from "./Screens/SecondScreens/BikePart/Sprcocket";
 import SparkPlug from "./Screens/SecondScreens/BikePart/SparkPlug";
 import Caorborator from "./Screens/SecondScreens/BikePart/Carborator";
 import MapScreen from "./Screens/MapScreen";
+import { Provider } from 'react-redux';
 
 import { initFirebase } from "./Backend/config";
+import {store} from './redux/store'
+import { populateMap, products } from "./util";
+import {CartScreen} from './Screens/CartScreen';
+
 
 const Stack = createNativeStackNavigator();
 
 
 
 function App() {
-
-  initFirebase();
-
+  useEffect(() => {
+    initFirebase();
+    populateMap();
+  }, [])
 
   return (
-    <NavigationContainer>
-      {/* <BottamBar /> */}
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="SplashScreen"
+            component={SplashScreen}
+            options={{ headerShown: false }}
+          />
 
-      <Stack.Navigator>
-        <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen
+            name="MapScreen"
+            component={MapScreen}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="MapScreen"
-          component={MapScreen}
-          options={{ headerShown: false }}
-        />
-
-        <Stack.Screen
-          name="LoginScreen"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="RegisterScreen"
-          component={RegisterScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Bikes"
-          component={Bikes}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Emechanic"
-          component={Emechanic}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Basic"
-          component={Basic}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="MidRange"
-          component={MidRange}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Booking"
-          component={Booking}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="BikeBooking"
-          component={BikeBooking}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="BikeBooking1"
-          component={BikeBooking1}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProfileScreen"
-          component={ProfileScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Antifreez"
-          component={Antifreeze}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Battery"
-          component={Battery}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Blades"
-          component={Blades}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Brakes"
-          component={Brakes}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Allignment"
-          component={Allignments}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Airfilter"
-          component={Airfilter}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="OilFilter"
-          component={OilFilter}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Tyre"
-          component={Tyre}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="BookingForm"
-          component={BookingForm}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ConfirmOrder"
-          component={ConfirmOrder}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Tyre_1"
-          component={Tyre_1}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Sprocket"
-          component={Sprocket}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SparkPlug"
-          component={SparkPlug}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Carborator"
-          component={Caorborator}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="LoginScreen"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="RegisterScreen"
+            component={RegisterScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Bikes"
+            component={Bikes}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Emechanic"
+            component={Emechanic}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Basic"
+            component={Basic}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="MidRange"
+            component={MidRange}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Booking"
+            component={Booking}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="BikeBooking"
+            component={BikeBooking}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="BikeBooking1"
+            component={BikeBooking1}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProfileScreen"
+            component={ProfileScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="AntiFreeze"
+            component={Antifreeze}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Battery"
+            component={Battery}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Blades"
+            component={Blades}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Brakes"
+            component={Brakes}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Allignment"
+            component={Allignments}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Airfilter"
+            component={Airfilter}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="OilFilter"
+            component={OilFilter}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Tyre"
+            component={Tyre}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="BookingForm"
+            component={BookingForm}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ConfirmOrder"
+            component={ConfirmOrder}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Tyre_1"
+            component={Tyre_1}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Sprocket"
+            component={Sprocket}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SparkPlug"
+            component={SparkPlug}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Carborator"
+            component={Caorborator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="CartScreen"
+            component={CartScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
