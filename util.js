@@ -25,6 +25,7 @@ export const populateMap = () => {
   addProduct({name: 'Oil Filter', uri: require('./Image/oil_1.png'), price: 200});
   addProduct({name: 'Tyre', uri: require('./Image/tire_1.png'), price: 200});
   addProduct({name: 'Allignments', uri: require('./Image/wheels_1.png'), price: 200});
+  addProduct({name: 'Brakes', uri: require('./Image/brakes_1.png'), price: 200});
 
   products.forEach((value, index) => {
     productNames.set(value.name, index);

@@ -13,7 +13,7 @@ export const ProductCard = (props) => {
                     </Text>
                 </View>
                 <View style={styles.imageContainer}>
-                    <Text style={{fontWeight: 'bold'}}>{props.price}</Text>
+                    <Text style={{fontWeight: 'bold', textAlign: 'center', fontSize: 20}}>{props.price}</Text>
                     <Image style={styles.image} 
                     source={props.uri} />
                 </View>
